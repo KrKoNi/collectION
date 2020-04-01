@@ -1,16 +1,16 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
-const cors = require('cors')
-const { json } = require( "body-parser")
+const path = require('path')
 require('dotenv').config()
 
 const app = express()
+app.use(express.json({ extended: true }))
 
-const corsOptions = {
-    exposedHeaders: 'auth-header',
-}
-app.use(cors(corsOptions))
+app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api/collection', require('./routes/collection.routes'))
+app.use('/api/item', require('./routes/item.routes'))
+
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
   
@@ -18,14 +18,6 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
-
-app.use(express.json({extended: true}))
-app.use(json());
-app.use('/api/auth', require('./routes/auth.routes'))
-app.use('/api/collection', require('./routes/collection.routes'))
-app.use('/api/item', require('./routes/item.routes'))
-
-
 
 const PORT = config.get('port') || 5000
 const mongoUri = config.get('mongoUri')
