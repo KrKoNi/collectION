@@ -1,5 +1,5 @@
 {
-    "port": 80,
+    "port": 5000,
     "jwtSecret": "uhsduh92hfhwes8hwbdguwrgho213rtrio",
     "mongoUri": "mongodb+srv://krkoni:krkoni123@cluster0-zozj3.azure.mongodb.net/Collections?retryWrites=true&w=majority",
     "baseUrl": "https://reactcollection.herokuapp.com/"
