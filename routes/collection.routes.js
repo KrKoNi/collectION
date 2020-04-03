@@ -30,7 +30,7 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/all', async (req, res) => {
     try {
-        const collections = await Collection.find()
+        const collections = await Collection.find().sort({_createdAt: -1})
         res.json(collections)
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})
@@ -40,6 +40,14 @@ router.get('/all', async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
     try {
         const collections = await Collection.findById(req.params.id)
+        res.json(collections)
+    } catch (e) {
+        res.status(500).json({message: 'Something wrong'})
+    }
+})
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        const collections = await Collection.delete(req.params.id)
         res.json(collections)
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})

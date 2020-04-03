@@ -15,7 +15,6 @@ export const Navbar = props => {
             <div className="container">
             <nav>
                 <div className="nav-wrapper">
-                
                 <NavLink to="/" className="brand-logo">collectION</NavLink>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><NavLink to="/user">My Profile</NavLink></li>
@@ -33,7 +32,7 @@ export const Navbar = props => {
             <div className="nav-wrapper">
             <NavLink to="/" className="brand-logo">collectION</NavLink>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><NavLink to="/auth">Log in</NavLink></li>
+                <li><NavLink to="/auth">Log in/Sign up</NavLink></li>
             </ul>
             </div>
         </nav>
