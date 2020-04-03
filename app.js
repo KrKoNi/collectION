@@ -2,7 +2,6 @@ const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
 const path = require('path')
-require('dotenv').config()
 
 const app = express()
 app.use(express.json({ extended: true }))
