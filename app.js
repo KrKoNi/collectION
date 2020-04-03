@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-const PORT = config.get('port') || 5000
+const PORT = process.env.PORT || 5000
 const mongoUri = config.get('mongoUri')
 async function start() {
     try {
@@ -28,6 +28,7 @@ async function start() {
             useUnifiedTopology: true
         })
         console.log('MongoDB connected')
+        app.listen(PORT, () => console.log(`App has been started on port ${PORT}`))
     } catch (e) {
         console.log('Server Error', e.message)
         process.exit(1)
@@ -35,4 +36,3 @@ async function start() {
 }
 
 start()
-app.listen(PORT, () => console.log(`App has been started on port ${PORT}`))
