@@ -22,6 +22,15 @@ router.get('/:id', admin, async (req, res) => {
     }
 })
 
+router.delete('/:id', admin, async (req, res) => {
+    try {
+        const users = await User.deleteOne({_id: req.params.id})
+        res.json(users)
+    } catch (e) {
+        res.status(500).json({message: 'Something wrong'})
+    }
+})
+
 router.get('/my_profile', auth, async (req, res) => {
     try {
         const users = await User.findById(req.user.id)

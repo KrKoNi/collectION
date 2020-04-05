@@ -3,7 +3,7 @@ import {useHttp} from '../hooks/http.hook'
 import {useMessage} from '../hooks/message.hook'
 import {AuthContext} from '../context/AuthContext'
 
-export const AuthPage = () => {
+export const LoginPage = () => {
   const auth = useContext(AuthContext)
   const message = useMessage()
   const {loading, request, error, clearError} = useHttp()
@@ -24,13 +24,12 @@ export const AuthPage = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const registerHandler = async () => {
+  const loginHandler = async () => {
     try {
-      const data = await request('/api/auth/register', 'POST', {...form})
-      message(data.message)
+      const data = await request('/api/auth/login', 'POST', {...form})
+      auth.login(data.token, data.userId)
     } catch (e) {}
   }
-
 
   return (
     <div className="row">
@@ -38,52 +37,43 @@ export const AuthPage = () => {
         <h1>collectION</h1>
         <div className="card blue darken-1">
           <div className="card-content white-text">
-            <span className="card-title">Sign Up</span>
+            <span className="card-title">Log in</span>
             <div>
               <div className="input-field">
                 <input
-                  placeholder="Enter e-mail"
-                  id="email"
-                  type="text"
-                  name="email"
-                  value={form.email}
-                  onChange={changeHandler}
-                />
-                <label htmlFor="email">Email</label>
-              </div>
-
-              <div className="input-field">
-                <input
-                  placeholder="Enter username"
+                  placeholder="Enter e-mail or username"
                   id="username"
                   type="text"
                   name="username"
                   value={form.username}
                   onChange={changeHandler}
                 />
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Email / Username</label>
               </div>
+
               <div className="input-field">
                 <input
                   placeholder="Введите пароль"
                   id="password"
                   type="password"
                   name="password"
+                  className="yellow-input"
                   value={form.password}
                   onChange={changeHandler}
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Пароль</label>
               </div>
 
             </div>
           </div>
           <div className="card-action">
             <button
-              className="btn grey lighten-1 black-text"
-              onClick={registerHandler}
+              className="btn yellow darken-4"
+              style={{marginRight: 10}}
               disabled={loading}
+              onClick={loginHandler}
             >
-              Sign Up
+              Войти
             </button>
           </div>
         </div>

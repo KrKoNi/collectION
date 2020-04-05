@@ -33,7 +33,8 @@ export const Navbar = props => {
             <div className="nav-wrapper">
             <NavLink to="/" className="brand-logo">collectION</NavLink>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><NavLink to="/auth">Log in/Sign up</NavLink></li>
+                <li><NavLink to="/auth">Sign up</NavLink></li>
+                <li><NavLink to="/login">Log in</NavLink></li>
             </ul>
             </div>
         </nav>

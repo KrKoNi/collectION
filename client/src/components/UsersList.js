@@ -9,11 +9,18 @@ export const UsersList = ({ users }) => {
 
   return (
       <div className="row">
-      { users.map((user) => {
-        return (
-          <UserCard user={user}/>
-        )
-      }) }
-    </div>
+        <table className="striped highlight responsive-table">
+          <thead>
+            <tr>
+                <th>E-mail</th>
+                <th>Admin Status</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            { users.map((user) => {return (<UserCard user={user}/>)})}
+          </tbody>
+        </table>
+      </div>
   )
 }

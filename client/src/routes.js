@@ -7,35 +7,10 @@ import { UserPage } from './pages/UserPage'
 import { CreateCollectionPage } from './pages/CreateCollectionPage'
 import { AuthPage } from './pages/AuthPage'
 import { CreateItemPage } from './pages/CreateItemPage'
+import { LoginPage } from './pages/LoginPage'
 
 
-export const useRoutes = (isAuthenticated, isAdmin) => {
-    if(isAdmin) {
-        return (
-            <Switch>
-                <Route path="/" exact>
-                    <MainPage/>
-                </Route>
-                <Route path="/user" exact>
-                    <UserPage/>
-                </Route>
-                <Route path="/create_collection" exact>
-                    <CreateCollectionPage/>
-                </Route>
-                <Route path="/create_item/:id">
-                    <CreateItemPage/>
-                </Route>
-                <Route path="/users" exact>
-                    <UsersListPage/>
-                </Route>
-                <Route path="/collection/:id">
-                    <CollectionPage/>
-                </Route>
-                <Redirect to="/"/>
-            </Switch>
-          
-        )
-    }
+export const useRoutes = isAuthenticated => {
     if(isAuthenticated) {
         return (
             <Switch>
@@ -67,6 +42,9 @@ export const useRoutes = (isAuthenticated, isAdmin) => {
             <Switch>
                 <Route path="/auth">
                     <AuthPage/>
+                </Route>
+                <Route path="/login">
+                    <LoginPage/>
                 </Route>
                 <Route path="/">
                     <MainPage/>

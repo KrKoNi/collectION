@@ -4,16 +4,16 @@ import { ItemCard } from './ItemCard'
 
 export const ItemsList = ({ items }) => {
   if (!items.length) {
-    return <p className="center">There is no items</p>
+    return <p className="center">There is no item</p>
   }
 
   return (
       <div className="row">
-      { items.map((item) => {
-        return (
-          <ItemCard item={item}/>
-        )
-      }) }
-    </div>
+        { items.map((item) => {
+          return (
+            <ItemCard item={item}/>
+          )
+        }) }
+      </div>
   )
 }

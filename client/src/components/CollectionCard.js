@@ -25,7 +25,7 @@ export const CollectionCard = ({collection}) => {
                     <p>{collection.type}</p>
                 </div>
                 <div className="card-actions">
-                    <a href={'/collection/'+collection._id} className="waves-effect waves-light btn">Open Collection</a>
+                    <a href={'/collection/'+collection._id} className="waves-effect waves-light btn">Open Collection</a>{' '}
                     <a className="waves-effect waves-light btn" onClick={deleteHandler}>Delete</a>
                 </div>
             </div>           
