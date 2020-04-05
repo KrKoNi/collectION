@@ -22,6 +22,7 @@ export const UserCard = ({user}) => {
     return ( 
           <tr>
             <td>{user.email}</td>
+            <td>{user.username}</td>
             <td>{user.isAdmin.toString()}</td>
             <td>{!user.isAdmin ? <button className="waves-effect waves-light btn">Make Admin</button> : null}{' '}<button className="waves-effect waves-light btn" onClick={deleteHandler}>Delete User</button></td>
           </tr>

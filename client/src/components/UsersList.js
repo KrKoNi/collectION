@@ -13,6 +13,7 @@ export const UsersList = ({ users }) => {
           <thead>
             <tr>
                 <th>E-mail</th>
+                <th>Username</th>
                 <th>Admin Status</th>
                 <th></th>
             </tr>
