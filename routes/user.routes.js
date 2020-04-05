@@ -24,10 +24,21 @@ router.get('/:id', admin, async (req, res) => {
 
 router.delete('/:id', admin, async (req, res) => {
     try {
-        const users = await User.deleteOne({_id: req.params.id})
-        res.json(users)
+        await User.deleteOne({_id: req.params.id})
+     
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})
+    }
+})
+
+router.post('/make_admin/:id', admin, async (req, res) => {
+    try {
+        const user = await User.findOne({_id: req.params.id})
+        user.isAdmin = true
+        await user.save()
+        res.json(user)
+    } catch (e) {
+        
     }
 })
 

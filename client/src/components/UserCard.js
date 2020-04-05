@@ -18,13 +18,24 @@ export const UserCard = ({user}) => {
             
         }
     }
+    const adminHandler = async () => {
+        try {
+            await request('/api/user/make_admin/'+user._id, 'POST', null, {
+                Authorization: `Bearer ${auth.token}`
+            })
+            history.push('/users')
+        } catch (e) {
+            
+        }
+    }
+
 
     return ( 
           <tr>
             <td>{user.email}</td>
             <td>{user.username}</td>
             <td>{user.isAdmin.toString()}</td>
-            <td>{!user.isAdmin ? <button className="waves-effect waves-light btn">Make Admin</button> : null}{' '}<button className="waves-effect waves-light btn" onClick={deleteHandler}>Delete User</button></td>
+            <td>{!user.isAdmin ? <button className="waves-effect waves-light btn" onClick={adminHandler}>Make Admin</button> : null}{' '}<button className="waves-effect waves-light btn" onClick={deleteHandler}>Delete User</button></td>
           </tr>
     
     )

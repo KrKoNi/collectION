@@ -7,12 +7,17 @@ import { useAuth } from './hooks/auth.hook'
 import { AuthContext } from './context/AuthContext'
 import { Navbar } from './components/Navbar'
 import { Loader } from './components/Loader'
+import { verify } from 'jsonwebtoken'
+//const config = require('config')
 
-
-function App() {
+function App() {  
   const {login, logout, token, userId, ready} = useAuth()
   const isAuthenticated = !!token
-  const routes = useRoutes(isAuthenticated) 
+
+  const decoded = isAuthenticated ? verify(token, "uhsduh92hfhwes8hwbdguwrgho213rtrio") : null
+  const isAdmin = decoded ? decoded.adminStatus : null
+  
+  const routes = useRoutes(isAuthenticated, isAdmin) 
 
   if(!ready) {
     return <Loader/>
@@ -20,10 +25,10 @@ function App() {
 
   return (
     <AuthContext.Provider value={{
-      token, login, logout, userId, isAuthenticated
+      token, login, logout, userId, isAuthenticated, isAdmin
     }}>
       <Router>
-        {<Navbar value = {isAuthenticated}/>}
+        <Navbar/>
         <div className="container">
           {routes}
         </div>
