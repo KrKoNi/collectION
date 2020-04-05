@@ -9,7 +9,7 @@ export const CollectionCard = ({collection}) => {
     const history = useHistory()
     const deleteHandler = async () => {
         try {
-            await request('/api/collection/'+collection._id, 'DELETE', {...collection}, {
+            await request('/api/collection/'+collection._id, 'DELETE', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             history.push('/')
@@ -25,8 +25,8 @@ export const CollectionCard = ({collection}) => {
                     <p>{collection.type}</p>
                 </div>
                 <div className="card-actions">
-                    <a href={'/collection/'+collection._id}>Open collection</a>
-                    <button onClick={deleteHandler}>Delete</button>
+                    <a href={'/collection/'+collection._id} className="waves-effect waves-light btn">Open Collection</a>
+                    <a className="waves-effect waves-light btn" onClick={deleteHandler}>Delete</a>
                 </div>
             </div>           
         </div>

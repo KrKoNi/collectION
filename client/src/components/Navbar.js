@@ -19,6 +19,7 @@ export const Navbar = props => {
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><NavLink to="/user">My Profile</NavLink></li>
                     <li><NavLink to="/create_collection">Create New Collection</NavLink></li>
+                    <li><NavLink to="/users">Users List</NavLink></li>
                     <li><a href="/" onClick={logoutHandler}>Log out</a></li>
                 </ul>
                 </div>

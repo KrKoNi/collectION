@@ -8,7 +8,7 @@ export const UserCard = ({user}) => {
                 <p>{user.email}</p>
             </div>
             <div className="card-actions">
-                <button>Make Ddmin</button>
+                <button>Make Admin</button>
                 <button>Delete User</button>
             </div>
         </div>     

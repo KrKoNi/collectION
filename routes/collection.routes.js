@@ -2,6 +2,7 @@ const {Router} = require('express')
 const router = Router()
 const Collection = require('../models/Collection')
 const auth = require('../middleware/auth.middleware')
+const admin = require('../middleware/admin.middleware')
 
 router.post('/create', auth, async (req, res) => {
     try {
@@ -30,7 +31,7 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/all', async (req, res) => {
     try {
-        const collections = await Collection.find().sort({_createdAt: -1})
+        const collections = await Collection.find().sort({createdAt: -1})
         res.json(collections)
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})
@@ -45,12 +46,23 @@ router.get('/:id', auth, async (req, res) => {
         res.status(500).json({message: 'Something wrong'})
     }
 })
-router.delete('/:id', auth, async (req, res) => {
+
+router.delete('/:id', admin, async (req, res) => {
     try {
-        const collections = await Collection.delete(req.params.id)
-        res.json(collections)
+        await Collection.deleteOne({_id: req.params.id})
+        res.status(200).json({message: 'Collection removed'})
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})
     }
 })
+
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        await Collection.deleteOne({owner: req.user.id , _id: req.params.id})
+        res.status(200).json({message: 'Collection removed'})
+    } catch (e) {
+        res.status(500).json({message: 'Something wrong'})
+    }
+})
+
 module.exports = router

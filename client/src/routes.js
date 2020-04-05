@@ -45,6 +45,9 @@ export const useRoutes = (isAuthenticated, isAdmin) => {
                 <Route path="/user" exact>
                     <UserPage/>
                 </Route>
+                <Route path="/users" exact>
+                    <UsersListPage/>
+                </Route>
                 <Route path="/create_collection" exact>
                     <CreateCollectionPage/>
                 </Route>
