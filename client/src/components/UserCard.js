@@ -4,39 +4,19 @@ import { useHttp } from '../hooks/http.hook'
 import { useHistory } from 'react-router-dom'
 
 export const UserCard = ({user}) => {
-    const auth = useContext(AuthContext)
-    const {request} = useHttp()
-    const history = useHistory()
-
-    const deleteHandler = async () => {
-        try {
-            await request('/api/user/'+user._id, 'DELETE', null, {
-                Authorization: `Bearer ${auth.token}`
-            })
-            history.push('/users')
-        } catch (e) {
-            
-        }
-    }
-    const adminHandler = async () => {
-        try {
-            await request('/api/user/make_admin/'+user._id, 'POST', null, {
-                Authorization: `Bearer ${auth.token}`
-            })
-            history.push('/users')
-        } catch (e) {
-            
-        }
-    }
-
-
     return ( 
-          <tr>
-            <td>{user.email}</td>
-            <td>{user.username}</td>
-            <td>{user.isAdmin.toString()}</td>
-            <td>{!user.isAdmin ? <button className="waves-effect waves-light btn" onClick={adminHandler}>Make Admin</button> : null}{' '}<button className="waves-effect waves-light btn" onClick={deleteHandler}>Delete User</button></td>
-          </tr>
+        <div className="row">
+            <div className="col s12 m6 l3">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{user.username}</span>
+                    <p>email: {user.email}</p>
+                    <p>admin status: {user.isAdmin.toString()}</p>
+                    <p>created at: {user.createdAt.slice(0,10)}</p>
+                </div>
+            </div>
+            </div>
+        </div>
     
     )
 }

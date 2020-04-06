@@ -5,7 +5,7 @@ const schema = new Schema({
     name: {type: String, required: true},
     description: {type: String},
     col: {type: Types.ObjectId, ref: 'Col'},
-    date: {type: Date, default: Date.now()},
+    createdAt: {type: Date, default: Date.now()}
 })
 
 

@@ -47,9 +47,9 @@ router.get('/:id', auth, async (req, res) => {
     }
 })
 
-router.delete('/:id', admin, async (req, res) => {
+router.delete('/:id', admin, auth, async (req, res) => {
     try {
-        await Collection.deleteOne({_id: req.params.id})
+        await Collection.deleteOne({_id: req.params.id}) || await Collection.deleteOne({owner: req.user.userId , _id: req.params.id})
         res.status(200).json({message: 'Collection removed'})
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})
@@ -58,7 +58,7 @@ router.delete('/:id', admin, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
     try {
-        await Collection.deleteOne({owner: req.user.id , _id: req.params.id})
+        await Collection.deleteOne({owner: req.user.userId , _id: req.params.id})
         res.status(200).json({message: 'Collection removed'})
     } catch (e) {
         res.status(500).json({message: 'Something wrong'})

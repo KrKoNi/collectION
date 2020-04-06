@@ -8,12 +8,8 @@ export const ItemsList = ({ items }) => {
   }
 
   return (
-      <div className="row">
-        { items.map((item) => {
-          return (
-            <ItemCard item={item}/>
-          )
-        }) }
-      </div>
+      <>
+      {items.map((item) => {return (<ItemCard item={item}/>)})}
+      </>
   )
 }

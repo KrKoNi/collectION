@@ -5,7 +5,8 @@ const schema = new Schema({
     username: {type: String, unique: true},
     password: {type: String, required: true},
     col: [{type: Types.ObjectId, ref: 'Col'}],
-    isAdmin: {type: Boolean, default: false}
+    isAdmin: {type: Boolean, default: false},
+    createdAt: {type: Date, default: Date.now()}
 })
 
 

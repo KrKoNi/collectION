@@ -7,15 +7,14 @@ import { useAuth } from './hooks/auth.hook'
 import { AuthContext } from './context/AuthContext'
 import { Navbar } from './components/Navbar'
 import { Loader } from './components/Loader'
-import { verify } from 'jsonwebtoken'
+import { verify, decode  } from 'jsonwebtoken'
 //const config = require('config')
 
 function App() {  
   const {login, logout, token, userId, ready} = useAuth()
   const isAuthenticated = !!token
-
-  const decoded = isAuthenticated ? verify(token, "uhsduh92hfhwes8hwbdguwrgho213rtrio") : null
-  const isAdmin = decoded ? decoded.adminStatus : null
+  const decoded = isAuthenticated && token ? decode(token, "uhsduh92hfhwes8hwbdguwrgho213rtrio") : false
+  const isAdmin = decoded ? decoded.adminStatus : false
   
   const routes = useRoutes(isAuthenticated, isAdmin) 
 

@@ -23,7 +23,7 @@ export const MainPage = () => {
 
     return (
         <div>
-            {!loading && <CollectionsList collections={collections}/>}
+            {<CollectionsList collections={collections}/>}
         </div>
     )
 }

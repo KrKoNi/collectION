@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserCard } from './UserCard'
+import { UserRow } from './UserRow'
 
 
 export const UsersList = ({ users }) => {
@@ -19,7 +19,7 @@ export const UsersList = ({ users }) => {
             </tr>
           </thead>
           <tbody>
-            { users.map((user) => {return (<UserCard user={user}/>)})}
+            { users.map((user) => {return (<UserRow user={user}/>)})}
           </tbody>
         </table>
       </div>
