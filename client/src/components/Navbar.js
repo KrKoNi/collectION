@@ -13,7 +13,7 @@ export const Navbar = () => {
     if(auth.isAdmin) {
         return (
             <div className="container">
-            <nav>
+            <nav className="blue-grey darken-4">
                 <div className="nav-wrapper">
                 <NavLink to="/" className="brand-logo">collectION</NavLink>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -30,7 +30,7 @@ export const Navbar = () => {
     if(auth.isAuthenticated) {
         return (
             <div className="container">
-            <nav>
+            <nav className="blue-grey darken-4">
                 <div className="nav-wrapper">
                 <NavLink to="/" className="brand-logo">collectION</NavLink>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">

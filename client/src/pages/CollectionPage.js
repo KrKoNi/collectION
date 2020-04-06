@@ -54,9 +54,9 @@ export const CollectionPage = () => {
 
     return (
         <div className="row">
-        <div className="col s6 m4 l3">  
+            <div className="col s6 m4 l3"> 
             {!loading && items && <ItemsList items={items}/>}
-            <div className="card">
+            <div className="card">            
                 <div className="card-image">
                     <img src="https://materializecss.com/images/sample-1.jpg"/>
                 </div>
