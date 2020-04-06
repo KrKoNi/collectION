@@ -10,7 +10,7 @@ router.post('/create', auth, async (req, res) => {
         const item = new Item({
             name, col, description
         })
-
+        
         await item.save()
 
         res.status(201).json({item})
@@ -19,14 +19,7 @@ router.post('/create', auth, async (req, res) => {
     }
 })
 
-router.get('/', auth, async (req, res, col) => {
-    try {
-        const items = await Item.find({ col })
-        res.json(items)
-    } catch (e) {
-        res.status(500).json({message: 'Something wrong'})
-    }
-})
+
 
 router.get('/:id', auth, async (req, res) => {
     try {

@@ -37,7 +37,7 @@ export const CollectionCard = ({collection}) => {
             <img src="images/yuna.jpg" alt="" className="circle"/>
             <span className="title">{collection.name}</span>
             <p>{collection.type}<br/>
-            author: {author ? author.username : ''}
+            author: {author && author.username}
             </p>
             <a href={'/collection/'+collection._id} className="waves-effect waves-light btn">Open Collection</a>{' '}
             <a className="waves-effect waves-light btn" onClick={deleteHandler}>Delete</a>

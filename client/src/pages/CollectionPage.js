@@ -7,7 +7,7 @@ import { ItemsList } from '../components/ItemsList'
 import { useMessage } from '../hooks/message.hook'
 
 export const CollectionPage = () => {
-    const {token} = useContext(AuthContext)
+    const {token, userId} = useContext(AuthContext)
     const {request, loading} = useHttp()
     const [items, setItems] = useState(null)
     const collectionId = useParams().id
@@ -44,9 +44,8 @@ export const CollectionPage = () => {
             if (data) {
                 message('Item added')
             }
-        } catch (e) {
-            
-        }
+            window.location = `/collection/${collectionId}`
+        } catch (e) {}
     }
 
     if(loading) {
@@ -75,7 +74,7 @@ export const CollectionPage = () => {
                     <button onClick={createHandler} className="waves-effect waves-light btn">Create Item</button>
                 </div>
             </div>
-            </div>
+        </div>
         </div>
     )
 }
